@@ -18,10 +18,21 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { handleDeposit } from '@/lib/deposit';
+import { createClient } from '@/lib/supabase/server';
 
 export async function POST(req: NextRequest) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   const params = await req.json();
-  const result = await handleDeposit(params);
+  // The user always comes from the session, never from the request body.
+  const result = await handleDeposit({ ...params, userId: user.id }, supabase);
   if ('error' in result) {
     return NextResponse.json({ error: result.error }, { status: 400 });
   }

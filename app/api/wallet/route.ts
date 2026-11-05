@@ -18,9 +18,19 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { circleDeveloperSdk } from "@/lib/circle/sdk";
+import { createClient } from "@/lib/supabase/server";
 
 export async function POST(req: NextRequest) {
   try {
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { walletSetId } = await req.json();
 
     if (!walletSetId) {
