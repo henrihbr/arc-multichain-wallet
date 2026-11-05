@@ -109,6 +109,9 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-or-anon-key
 # Circle
 CIRCLE_API_KEY=your-circle-api-key
 CIRCLE_ENTITY_SECRET=your-circle-entity-secret
+
+# Arc Testnet RPC key (optional). Without it, the app uses the public Arc Testnet RPC.
+ARC_TESTNET_RPC_KEY=
 ```
 
 | Variable | Scope | Purpose |
@@ -117,6 +120,7 @@ CIRCLE_ENTITY_SECRET=your-circle-entity-secret
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Public | Supabase publishable (anon) key. |
 | `CIRCLE_API_KEY` | Server-side, secret | Circle API key for Gateway and wallet operations. |
 | `CIRCLE_ENTITY_SECRET` | Server-side, secret | Circle entity secret for signing wallet operations. |
+| `ARC_TESTNET_RPC_KEY` | Server-side, secret | Optional Arc Testnet RPC key. Without it, the app uses the public Arc Testnet RPC. |
 
 ## Scripts
 
