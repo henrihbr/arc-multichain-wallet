@@ -49,7 +49,7 @@ export const arcTestnet = {
     default: { http: [`https://rpc.testnet.arc.network/${arcRpcKey}`] },
   },
   blockExplorers: {
-    default: { name: 'Arcscan', url: 'https://testnet.arcscan.app' },
+    default: { name: 'Arcscan', url: 'https://explorer.testnet.arc.io' },
   },
   testnet: true,
 } as const satisfies Chain;
